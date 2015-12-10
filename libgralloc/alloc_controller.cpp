@@ -374,8 +374,9 @@ size_t getBufferSizeAndDimensions(int width, int height, int format,
             size = VENUS_BUFFER_SIZE(COLOR_FMT_NV12, width, height);
             break;
         case HAL_PIXEL_FORMAT_BLOB:
+        case HAL_PIXEL_FORMAT_RAW_OPAQUE:
             if(height != 1) {
-                ALOGE("%s: Buffers with format HAL_PIXEL_FORMAT_BLOB \
+                ALOGE("%s: Buffers with RAW_OPAQUE/BLOB formats \
                       must have height==1 ", __FUNCTION__);
                 return 0;
             }
@@ -385,7 +386,7 @@ size_t getBufferSizeAndDimensions(int width, int height, int format,
             size = ALIGN((alignedw*alignedh) + (alignedw* alignedh)/2, 4096);
             break;
         default:
-            ALOGE("unrecognized pixel format: 0x%x", format);
+            ALOGE("%s: unrecognized pixel format: 0x%x", __FUNCTION__, format);
             return 0;
     }
 
