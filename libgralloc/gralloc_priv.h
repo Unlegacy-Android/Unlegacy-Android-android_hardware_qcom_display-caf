@@ -185,6 +185,12 @@ struct private_handle_t : public native_handle {
         int     width;
         int     height;
         int     base_metadata;
+        int     original_width;
+        int     original_format;
+        int     producer_usage;
+        int     consumer_usage;
+         uint64_t backing_store __attribute__((aligned(8)));
+
 
 #ifdef __cplusplus
         static const int sNumInts = 12;
@@ -198,7 +204,10 @@ struct private_handle_t : public native_handle {
             flags(flags), size(size), offset(0), bufferType(bufferType),
             base(0), offset_metadata(eOffset), gpuaddr(0),
             format(format), width(width), height(height),
-            base_metadata(eBase)
+            base_metadata(eBase),
+	    original_width(0), original_format(0),
+            producer_usage(0), consumer_usage(0),
+            backing_store(0)
         {
             version = sizeof(native_handle);
             numInts = sNumInts;
