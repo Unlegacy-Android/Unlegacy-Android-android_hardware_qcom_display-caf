@@ -33,7 +33,7 @@
 #include <EGL/egl.h>
 
 #ifdef QTI_BSP
-#include <hardware/display_defs.h>
+#include "display_defs.h"
 #endif
 
 #define ALIGN_TO(x, align)     (((x) + ((align)-1)) & ~((align)-1))
